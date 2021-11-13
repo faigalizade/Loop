@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block head %}
+        <link rel="stylesheet" href="{{ prefix }}/public/css/style.css"/>
+        <title>{% block title %}{% endblock %} - My Webpage</title>
+    {% endblock %}
+</head>
+<body>
+    {% block content %}{% endblock %}
+    {{route('login')}}
+    <script src="{{ prefix }}/public/js/app.js"></script>
+</body>
+</html>
