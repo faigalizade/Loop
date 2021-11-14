@@ -9,4 +9,10 @@ class Auth extends Middleware
     {
 
     }
+
+    public static function user($role, $user)
+    {
+        // TODO auth verification error
+        setcookie("user_$role", json_encode($user));
+    }
 }

@@ -2,17 +2,19 @@
 namespace App\Core;
 
 
+use Jenssegers\Blade\Blade;
+
 class View
 {
-    protected static $twig;
+    protected static $blade;
 
-    public function __construct($twig)
+    public function __construct(Blade $blade)
     {
-        self::$twig = $twig;
+        self::$blade = $blade;
     }
 
     public static function make($path, $vars = [])
     {
-        return self::$twig->render("$path.html", $vars);
+        return self::$blade->make($path, $vars)->render();
     }
 }

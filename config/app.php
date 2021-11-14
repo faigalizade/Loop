@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'path_prefix' => '/SmartSoft',
+    'path_prefix' => '/Loop',
 
     'providers' => [
         App\Providers\RouteProvider::class,
@@ -10,6 +10,7 @@ return [
     ],
 
     'middlewares' => [
-        'auth' => App\Middlewares\Auth::class
+        'auth' => App\Middlewares\Auth::class,
+        'auth_admin' => App\Middlewares\Auth::class
     ]
 ];

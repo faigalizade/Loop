@@ -27,6 +27,7 @@ class Route
         $path = self::validateRoute($path);
         self::$route = $path;
         self::$routes['POST'][$path] = $argument;
+        return new static();
     }
 
     public static function getRoutes(): array
@@ -59,11 +60,17 @@ class Route
             if (preg_match("/{[A-Z0-9a-z]+}/", $availableRoute)) {
                 $pattern = preg_replace('/{[A-Z0-9a-z]+}/', "[A-Z0-9a-z]+", $availableRoute);
                 $pattern = str_replace("/", "\/", $pattern);
-                $pattern = "/$pattern$/";
+                $pattern = "/^$pattern$/";
                 if (preg_match($pattern, $currentUri)) {
+
                     $routeArguments = [];
                     $availableRouteElements = explode('/', $availableRoute);
                     $currentRouteElements = explode('/', $currentUri);
+
+                    if (count($currentRouteElements) !== count($availableRouteElements)) {
+                        return false;
+                    }
+
                     foreach ($availableRouteElements as $index => $element) {
                         if (preg_match("/{[A-Z0-9a-z]+}/", $element)) {
                             $argument = str_replace(["{", "}"], '', $element);
@@ -107,6 +114,7 @@ class Route
     public function name($name)
     {
         self::$namedRoutes[$name] = self::$route;
+        return new static();
     }
 
     public static function routeHasMiddleware($path)
@@ -121,6 +129,9 @@ class Route
 
     public static function getRouteByName($name, $arguments = [])
     {
-        return self::$namedRoutes[$name] ?? die('Route not found');
+        if (!array_key_exists($name, self::$namedRoutes)) {
+            return '';
+        }
+        return config('app.path_prefix').self::$namedRoutes[$name];
     }
 }

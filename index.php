@@ -1,8 +1,8 @@
 <?php
+//$time_start = microtime(true);
 use App\Application;
 
 //Global Helper
-require_once './helpers.php';
 // Require RedbeanPHP ORM
 require_once './database/RedBeanPHP.php';
 
@@ -14,3 +14,6 @@ $application = new Application();
 
 // Run app
 echo $application->run();
+//$time_end = microtime(true);
+//$execution_time = ($time_end - $time_start)/60;
+//dd($execution_time);

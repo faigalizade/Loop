@@ -12,8 +12,8 @@ class MainController extends Controller
         return View::make('home');
     }
 
-    public function show($id)
+    public function show()
     {
-        return "Routing like Laravel is working and ID is = $id";
+        return View::make('auth.login');
     }
 }

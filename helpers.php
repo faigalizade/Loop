@@ -1,8 +1,10 @@
 <?php
 
-function redirect($path)
+use App\Core\View;
+
+function redirect($path = null)
 {
-    header("Location: $path");
+    return App\Core\Redirect::redirect($path);
 }
 
 function config($path)
@@ -23,4 +25,19 @@ function dd(...$args)
 function route($name, $args = [])
 {
     return \App\Core\Route::getRouteByName($name, $args);
+}
+
+function view($path, $vars = []): string
+{
+    return View::make($path, $vars);
+}
+
+function request()
+{
+    return new \App\Core\Request();
+}
+
+function asset($path)
+{
+    return config('app.path_prefix')."/public/$path";
 }
