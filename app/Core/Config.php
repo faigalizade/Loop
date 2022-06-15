@@ -11,7 +11,13 @@ class Config
         $fileName = $pathArr[0];
         unset($pathArr[0]);
         if (!array_key_exists($fileName, self::$appConfig)) {
-            self::$appConfig[$fileName] = require_once realpath("config/{$fileName}.php");
+            $path = __DIR__."/../../config/{$fileName}.php";
+
+            if (!file_exists($path)) {
+                return null;
+            }
+
+            self::$appConfig[$fileName] = require_once $path;
         }
         $config = self::$appConfig[$fileName];
 

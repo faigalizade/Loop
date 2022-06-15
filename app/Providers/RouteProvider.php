@@ -9,6 +9,9 @@ class RouteProvider implements Provider
 
     public function boot()
     {
-        require_once realpath('routes/web.php');
+        $web = __DIR__."/../../routes/web.php";
+        $api = __DIR__."/../../routes/api.php";
+        require_once $web;
+        require_once $api;
     }
 }

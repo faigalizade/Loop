@@ -8,7 +8,7 @@ class Application
 {
 
     // URL prefix. Current Project Opened at MAMP where we have SmartSoft prefix in urls
-    private string $prefix = '';
+    private string|null $prefix = '';
 
     private array $middlewares = [];
 

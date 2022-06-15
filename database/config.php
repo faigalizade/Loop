@@ -3,7 +3,7 @@
 return [
     'host' => 'localhost',
     'port' => 8889,
-    'db' => 'store',
+    'db' => 'yelm',
     'username' => 'root',
     'password' => 'root'
 ];

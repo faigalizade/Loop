@@ -22,7 +22,7 @@ class Route
     public static function post($path, $argument)
     {
         if (!$path) {
-            return;
+            return null;
         }
         $path = self::validateRoute($path);
         self::$route = $path;
@@ -38,6 +38,11 @@ class Route
     public static function checkRoute($currentUri): array|string|bool
     {
         $currentUri = self::validateRoute($currentUri);
+
+        if (!array_key_exists($_SERVER['REQUEST_METHOD'], self::$routes)) {
+            return false;
+        }
+
         self::$availableRoutesForCurrentHttpMethod = self::$routes[$_SERVER['REQUEST_METHOD']];
         if (!self::$availableRoutesForCurrentHttpMethod) {
             return false;

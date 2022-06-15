@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'path_prefix' => '/Loop',
+    'path_prefix' => '',
 
     'providers' => [
         App\Providers\RouteProvider::class,

@@ -4,10 +4,10 @@ use App\Application;
 
 //Global Helper
 // Require RedbeanPHP ORM
-require_once './database/RedBeanPHP.php';
+require_once '../database/RedBeanPHP.php';
 
 //Autoload
-require_once './vendor/autoload.php';
+require_once '../vendor/autoload.php';
 
 //Create instanceof Application
 $application = new Application();

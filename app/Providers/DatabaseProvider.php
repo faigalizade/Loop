@@ -8,7 +8,7 @@ class DatabaseProvider implements Provider
 
     public function boot()
     {
-        $config = require_once realpath("database/config.php");
+        $config = require_once __DIR__."/../../database/config.php";
         R::setup( "mysql:host={$config['host']}:{$config['port']};dbname={$config['db']}", $config['username'], $config['password'] );
     }
 }
